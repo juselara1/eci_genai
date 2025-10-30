@@ -1,0 +1,15 @@
+services:
+  eci-genai-devenv:
+    container_name: eci-genai-devenv
+    build:
+      context: .devenv/
+      dockerfile: Dockerfile
+    stdin_open: true
+    tty: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: "nvidia"
+              count: 1
+              capabilities: [gpu]
